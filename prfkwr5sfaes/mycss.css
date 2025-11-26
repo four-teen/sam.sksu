@@ -1,0 +1,182 @@
+
+  body {
+    background: #f4f6f9;
+  }
+
+  /* Center content area since sidebar removed */
+  main.main {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 1.5rem;
+  }
+
+  /* Responsive row of cards */
+  .row.g-2 {
+    justify-content: center;
+  }
+
+  /* Modern Card Styling */
+  .info-card {
+    position: relative;
+    border-radius: 1rem !important;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .info-card::before {
+    content: "";
+    display: block;
+    height: 5px;
+    border-radius: 5px 5px 0 0;
+    background: linear-gradient(90deg, var(--start-color), var(--end-color));
+  }
+  .info-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  }
+  .info-card .card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--start-color), var(--end-color));
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+    font-size: 1.75rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: 0.3s ease;
+  }
+  .info-card:hover .card-icon {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  }
+  .info-card .card-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #343a40;
+    margin-bottom: 1rem;
+  }
+  .info-card small {
+    font-size: 0.85rem;
+    color: #6c757d;
+  }
+  .info-card h3 {
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: #212529;
+  }
+  .info-card:hover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 1rem;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.3), transparent 60%);
+    opacity: 0.8;
+  }
+
+  /* 📱 Responsive adjustments for mobile & tablets */
+  @media (max-width: 768px) {
+    #tbl_pending_actions {
+      font-size: 0.85rem;
+    }
+    .modal-dialog {
+      margin: 1rem;
+    }
+    .modal-body {
+      padding: 0.75rem;
+    }
+    .doc-card {
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+  }
+
+  /* 🔹 Document Card Style */
+  .doc-card {
+    border-left: 4px solid #007bff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+  .doc-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  #document_image_container {
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  /* =====================================================
+     ✅ MODAL RESPONSIVE & CENTERING FIXES
+     ===================================================== */
+
+  /* Center modals properly even on tablet view */
+  .modal-dialog-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 1rem);
+  }
+
+  /* Slightly smaller modals on tablets */
+  @media (max-width: 991.98px) {
+    .modal-dialog {
+      margin: 1rem auto !important;
+      max-width: 90% !important;
+    }
+    .modal-content {
+      border-radius: 0.8rem !important;
+    }
+  }
+
+  /* Adjust for short screens (landscape tablets) */
+  @media (max-height: 700px) {
+    .modal-dialog-centered {
+      align-items: flex-start !important;
+      margin-top: 2rem !important;
+    }
+  }
+
+  /* Proper layering & centering on all devices */
+  .modal.show {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 1055 !important;
+  }
+
+  /* Smooth blurred backdrop for SAM look */
+  .modal-backdrop {
+    top: 0 !important;
+    height: 100vh !important;
+    backdrop-filter: blur(3px);
+    opacity: 0.4 !important;
+  }
+
+  /* Soft entry animation & shadow for all modals */
+  .modal-content {
+    animation: popIn 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  @keyframes popIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  /* Optional: brand-style gradient modal headers */
+  .modal-header.bg-primary {
+    background: linear-gradient(135deg, #007bff, #17a2b8);
+    border-bottom: none;
+  }
+  .modal-header.bg-success {
+    background: linear-gradient(135deg, #198754, #20c997);
+    border-bottom: none;
+  }
+  .modal-header.bg-dark {
+    background: linear-gradient(135deg, #343a40, #6c757d);
+    border-bottom: none;
+  }

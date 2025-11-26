@@ -1,0 +1,35 @@
+/* Apply Courier New to readable text only, not icons */
+/*body, 
+h1, h2, h3, h4, h5, h6, 
+p, small, td, th, span, a, button, input, textarea {
+  font-family: "Courier New", Courier, monospace !important;
+}*/
+
+/* ✅ Global text styling with slightly larger Courier New font */
+body,
+.card,
+.table,
+.card-title,
+.card-body,
+small,
+span,
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Courier New", Courier, monospace !important;
+  font-size: 17px; /* increase from Bootstrap’s ~14px default */
+  letter-spacing: 0.3px; /* optional – improves readability for monospaced text */
+}
+
+/* Optional: slightly larger titles inside cards */
+.card-title {
+  font-size: 1.05rem !important;
+  font-weight: 600;
+}
+
+/* ✅ Keep icons intact */
+.bi::before {
+  font-family: "bootstrap-icons" !important;
+}
+
+.bx, .bxs, .bxl {
+  font-family: 'boxicons' !important;
+}
