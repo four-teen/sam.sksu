@@ -1812,7 +1812,7 @@ function loadTable() {
       processing: true,
       serverSide: true,
       ajax: {
-        url: "query_load_table.php",
+        url: "query_load_table2.php",
         type: "POST",
         data: { server_table: 1 }
       },
