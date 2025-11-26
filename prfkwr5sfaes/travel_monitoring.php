@@ -159,7 +159,7 @@ $_SESSION['systemcopyright'] = $rowconfig['systemcopyright'];
 
 <!-- Travel Details Modal -->
 <div class="modal fade" id="travelModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
     <div class="modal-content">
 
       <div class="modal-header bg-primary text-white">

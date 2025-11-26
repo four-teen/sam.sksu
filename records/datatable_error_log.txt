@@ -4352,3 +4352,19 @@
 2025-11-25 18:15:34 | DocID=657 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
 2025-11-25 18:15:34 | DocID=656 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
 2025-11-25 18:15:34 | DocID=655 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-11-26 08:16:30
+2025-11-26 08:16:30 | server_table request received
+2025-11-26 08:16:30 | DocID=1 | recordOwner=9 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-11-26 08:17:54
+2025-11-26 08:17:54 | server_table request received
+2025-11-26 08:17:54 | DocID=661 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-11-26 08:17:54 | DocID=660 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+2025-11-26 08:17:54 | DocID=659 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+2025-11-26 08:17:54 | DocID=658 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+2025-11-26 08:17:54 | DocID=657 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+2025-11-26 08:17:54 | DocID=656 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+2025-11-26 08:17:54 | DocID=655 | recordOwner=2 | currentOffice=67 | isOwner=FALSE

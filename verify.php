@@ -4,17 +4,17 @@ session_start();
 include 'db.php';
 
 // 🧠 Define log file path
-// $logFile = __DIR__ . '/login_log.txt';
-// if (!file_exists($logFile)) {
-//     file_put_contents($logFile, "=== Login Log File Created at " . date('Y-m-d H:i:s') . " ===\n");
-// }
+$logFile = __DIR__ . '/login_log.txt';
+if (!file_exists($logFile)) {
+    file_put_contents($logFile, "=== Login Log File Created at " . date('Y-m-d H:i:s') . " ===\n");
+}
 
 // 🪵 Write to log (compact style)
-// function writeLog($message) {
-//     global $logFile;
-//     $timestamp = date('Y-m-d H:i:s');
-//     file_put_contents($logFile, "[$timestamp] $message" . PHP_EOL, FILE_APPEND);
-// }
+function writeLog($message) {
+    global $logFile;
+    $timestamp = date('Y-m-d H:i:s');
+    file_put_contents($logFile, "[$timestamp] $message" . PHP_EOL, FILE_APPEND);
+}
 
 // --- START ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

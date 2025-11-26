@@ -1,9 +1,9 @@
 <?php
 
 $servername_r = "localhost";
-$username_r = "tnrmssks25_orms";
-$password_r = "Mn3m0n1cs_28";
-$dbase_r = "tnrmssks25_rmms_db";
+$username_r = "root";
+$password_r = "";
+$dbase_r = "rrms_db";
 
 
 

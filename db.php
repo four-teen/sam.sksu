@@ -1,10 +1,9 @@
 <?php
 
 $servername = "localhost";
-$username = "tnrmssks25_orms";
-$password = "Mn3m0n1cs_28";
-$dbase = "tnrmssks25_sam_db";
-
+$username = "root";
+$password = "";
+$dbase = "sam_db";
 
 $conn = mysqli_connect($servername, $username, $password, $dbase);
 
