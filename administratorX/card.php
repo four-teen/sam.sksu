@@ -43,17 +43,17 @@
 
   <!-- Released Summary -->
   <div class="col-lg-3 col-md-6">
-    <a href="ghost_management.php" class="text-decoration-none">
+    <a href="#" class="text-decoration-none" onclick="released_summary()">
       <div class="card info-card border-0 shadow-sm" style="--start-color:#ffc107;--end-color:#ffb347;">
         <div class="card-body">
-          <h5 class="card-title">Ghost <span class="text-muted">| Released</span></h5>
+          <h5 class="card-title">Summary <span class="text-muted">| Released</span></h5>
           <div class="d-flex align-items-center">
             <div class="card-icon">
               <i class="bx bxs-objects-vertical-top"></i>
             </div>
             <div>
               <h3 id="load_summary" class="mb-0">0</h3>
-              <small class="text-muted">unwanted</small>
+              <small class="text-muted">transactions this period</small>
             </div>
           </div>
         </div>

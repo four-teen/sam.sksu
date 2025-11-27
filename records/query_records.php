@@ -591,6 +591,17 @@ if (isset($_POST['add_record'])) {
         VALUES ('$date_received', '$received_by', '$file_code', '$divisionid', '$office_id', '$doctypeid', '$particular')
     ");
 
+    if($insert){
+        // 🔥 Get last inserted doc_id
+        $doc_id = mysqli_insert_id($conn);
+
+        // 🔥 Insert into actions table using the doc_id
+        $insert_actions = mysqli_query($conn, "
+            INSERT INTO tbl_document_actions 
+            (doc_id, from_office_id, to_office_id, action_type, action_remarks, action_date)
+            VALUES ('$doc_id', '$received_by', '$received_by', 'Logged', '', NOW())
+        ");
+    }
     echo $insert ? "success" : "error";
     exit;
 }
@@ -599,6 +610,10 @@ if (isset($_POST['add_record'])) {
 if (isset($_POST['delete_record'])) {
     $doc_id = mysqli_real_escape_string($conn, $_POST['doc_id']);
     $delete = mysqli_query($conn, "DELETE FROM tbl_documents_registry WHERE doc_id='$doc_id'");
+
+    $doc_id_action = mysqli_real_escape_string($conn, $_POST['doc_id']);
+    $delete_action = mysqli_query($conn, "DELETE FROM tbl_document_actions WHERE doc_id='$doc_id'");
+        
     echo $delete ? "deleted" : "error";
     exit;
 }

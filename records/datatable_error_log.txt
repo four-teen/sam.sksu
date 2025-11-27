@@ -4515,3 +4515,54 @@
 2025-11-26 16:37:56 | server_table request received
 2025-11-26 16:37:56 | DocID=656 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
 2025-11-26 16:37:56 | DocID=655 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-11-27 12:49:46
+2025-11-27 12:49:46 | server_table request received
+2025-11-27 12:49:46 | DocID=656 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+2025-11-27 12:49:46 | DocID=655 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-11-27 12:50:48
+2025-11-27 12:50:48 | server_table request received
+2025-11-27 12:50:48 | DocID=666 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-11-27 12:50:48 | DocID=656 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+2025-11-27 12:50:48 | DocID=655 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-11-27 12:54:47
+2025-11-27 12:54:47 | server_table request received
+2025-11-27 12:54:47 | DocID=666 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-11-27 12:54:47 | DocID=656 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+2025-11-27 12:54:47 | DocID=655 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-11-27 12:55:03
+2025-11-27 12:55:03 | server_table request received
+2025-11-27 12:55:03 | DocID=667 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-11-27 12:55:03 | DocID=666 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-11-27 12:55:03 | DocID=656 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+2025-11-27 12:55:03 | DocID=655 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-11-27 12:57:11
+2025-11-27 12:57:11 | server_table request received
+2025-11-27 12:57:11 | DocID=667 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-11-27 12:57:11 | DocID=666 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-11-27 12:57:11 | DocID=656 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+2025-11-27 12:57:11 | DocID=655 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-11-27 12:57:20
+2025-11-27 12:57:20 | server_table request received
+2025-11-27 12:57:20 | DocID=666 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-11-27 12:57:20 | DocID=656 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+2025-11-27 12:57:20 | DocID=655 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-11-27 12:58:17
+2025-11-27 12:58:17 | server_table request received
+2025-11-27 12:58:17 | DocID=668 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+2025-11-27 12:58:17 | DocID=666 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-11-27 12:58:17 | DocID=656 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+2025-11-27 12:58:17 | DocID=655 | recordOwner=2 | currentOffice=67 | isOwner=FALSE

@@ -86,7 +86,7 @@ if (isset($_POST['load_timeline'])) {
                 <small class="text-muted"><i class="bi bi-clock-history me-1"></i>Stayed for ' . $duration_text . '</small>
                 <p class="mb-1 text-secondary">' . htmlspecialchars($r['action_remarks']) . '</p>
                 <span class="badge bg-light text-dark">
-                  From: ' . htmlspecialchars($r['from_office']) . ' â†’ To: ' . htmlspecialchars($r['to_office']) . '
+                  From: ' . htmlspecialchars($r['from_office']) . ' To: ' . htmlspecialchars($r['to_office']) . '
                 </span>
               </div>
             </div>

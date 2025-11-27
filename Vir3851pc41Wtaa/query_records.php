@@ -524,6 +524,7 @@ if (isset($_POST['add_record'])) {
         (date_received, received_by, file_code, office_division, uni_divisionid, type_of_documents, particular)
         VALUES ('$date_received', '$received_by', '$file_code', '$divisionid', '$office_id', '$doctypeid', '$particular')
     ");
+    
     if($insert){
         // 🔥 Get last inserted doc_id
         $doc_id = mysqli_insert_id($conn);
@@ -543,6 +544,11 @@ if (isset($_POST['add_record'])) {
 if (isset($_POST['delete_record'])) {
     $doc_id = mysqli_real_escape_string($conn, $_POST['doc_id']);
     $delete = mysqli_query($conn, "DELETE FROM tbl_documents_registry WHERE doc_id='$doc_id'");
+
+    $doc_id_action = mysqli_real_escape_string($conn, $_POST['doc_id']);
+    $delete_action = mysqli_query($conn, "DELETE FROM tbl_document_actions WHERE doc_id='$doc_id'");
+
+
     echo $delete ? "deleted" : "error";
     exit;
 }
