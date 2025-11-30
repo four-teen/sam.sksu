@@ -83,6 +83,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     writeLog("Redirecting to motorpool..."); //motorpool
                     $redirect = "motorpool/index.php";
                     break;
+                case '19':
+                    writeLog("Redirecting to finance..."); //finance management
+                    $redirect = "f1na12c3/index.php";
+                    break;
                 default:
                     $_SESSION['status'] = "Unknown role.";
                     $redirect = "index.php";
