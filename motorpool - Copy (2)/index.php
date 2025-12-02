@@ -407,11 +407,6 @@ html, body {
             <textarea id="req_purpose" class="form-control" required readonly></textarea>
           </div>
 
-<div class="col-lg-12">
-    <label class="fw-semibold">Destination</label>
-    <input type="text" id="req_destination" class="form-control" required>
-</div>
-
           <div class="col-lg-4">
             <label class="fw-semibold">Departure Time</label>
             <input type="time" id="req_departure" class="form-control" step="1">
@@ -710,7 +705,7 @@ function delete_request(id) {
                     });
 
                     load_request_list();
-                    load_counts();
+
                 } else {
                     Swal.fire("Error", response, "error");
                 }
@@ -906,7 +901,6 @@ function change_status(id, currentStatus) {
                     });
 
                         load_request_list();
-                        load_counts();
                     } else {
                         Swal.fire("Error", res, "error");
                     }
@@ -935,7 +929,6 @@ function change_status(id, currentStatus) {
           if (res.trim() === "success") {
             Swal.fire("Approved!", "The request has been approved.", "success");
             load_request_list();
-            load_counts();
           } else {
             Swal.fire("Error", res, "error");
           }
@@ -959,7 +952,6 @@ function change_status(id, currentStatus) {
           if (res.trim() === "success") {
             Swal.fire("Disapproved!", "The request has been disapproved.", "success");
             load_request_list();
-            load_counts();
           } else {
             Swal.fire("Error", res, "error");
           }
@@ -969,6 +961,7 @@ function change_status(id, currentStatus) {
   }
 
 function edit_request(id) {
+
     $.post("query_vehicle_request.php", 
         { get_request: 1, id: id }, 
         function(response) {
@@ -977,27 +970,21 @@ function edit_request(id) {
 
             $("#req_requestID").val(id);
             $("#req_daterequest").val(r.daterequest);
-            $("#req_plateNumber").val(r.vehicleid).trigger('change');
-            $("#req_driver").val(r.driverid).trigger('change');
-            $("#req_fullname").val(r.requisitioner).trigger('change');
-
+            $("#req_plateNumber").val(r.vehicleid);
+            $("#req_driver").val(r.driverid);
+            $("#req_fullname").val(r.requisitioner);
             $("#req_dateFrom").val(r.date_from);
             $("#req_dateTo").val(r.date_to);
-
-            $("#req_numPass").val(r.num_pass);
+            $("#reg_purpose").val(r.purpose);
+            $("#reg_numPass").val(r.num_pass);
             $("#reg_listPass").val(r.list_passenger);
-
-            $("#req_purpose").val(r.purpose);
-            $("#req_destination").val(r.destination);
-
-            $("#req_departure").val(r.departure_time);
-            $("#req_meetingPlace").val(r.meeting_place);
+            $("#reg_departure").val(r.departure_time);
+            $("#reg_meetingPlace").val(r.meeting_place);
 
             $("#RequestModal").modal("show");
         }
     );
 }
-
 
 
 // ===================================================================================
@@ -1022,7 +1009,6 @@ function save_request() {
     dateFrom: $("#req_dateFrom").val(),
     dateTo: $("#req_dateTo").val(),
     purpose: $("#req_purpose").val(),
-    destination: $("#req_destination").val(),   // NEW FIELD
     numPass: $("#req_numPass").val(),
     listPass: $("#reg_listPass").val(),
     departure: $("#req_departure").val(),
@@ -1042,7 +1028,6 @@ function save_request() {
   if (!data.dateTo) return Swal.fire("Missing Input","Please select Travel Date (To).","warning");
   if (!data.numPass) return Swal.fire("Missing Input","Please enter number of passengers.","warning");
   if (!data.listPass) return Swal.fire("Missing Input","Please select a Travel Order.","warning");
-  if (!data.destination) return Swal.fire("Missing Input", "Please enter Destination.", "warning");
 
   // Validate travel date range
   if (new Date(data.dateFrom) > new Date(data.dateTo)) {

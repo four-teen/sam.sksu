@@ -209,15 +209,10 @@ if (isset($_POST['load_request_list'])) {
 
     $status = $_POST['filter_status'] ?? 'Pending';
 
-    $sql = "SELECT 
-                r.*, 
-                v.vehicle_temp, 
-                d.fullname AS driver_name,
-                p.acc_name AS requisitioner_name
+    $sql = "SELECT r.*, v.vehicle_temp, d.fullname AS driver_name
             FROM tbl_vehicle_request r
             LEFT JOIN tbl_vehicle v ON r.vehicleid = v.vehicleid
             LEFT JOIN tbl_driver d ON r.driverid = d.driverid
-            LEFT JOIN tblprofiles p ON r.requisitioner = p.acc_id
             WHERE r.status = '$status'
             ORDER BY r.requestid DESC";
 
@@ -231,7 +226,7 @@ if (isset($_POST['load_request_list'])) {
         $going_date     = strtoupper(date("M d, Y", strtotime($r['date_from'])));
         $return_date    = strtoupper(date("M d, Y", strtotime($r['date_to'])));
         $request_date   = strtoupper(date("M d, Y", strtotime($r['daterequest'])));
-        $requisitioner = ucwords($r['requisitioner_name']);
+        $requisitioner  = ucwords($r['requisitioner']);
         $vehicle_temps  = strtoupper($r['vehicle_temp']);
         $meetingPlace   = $r['meeting_place'];
         $departureTime  = $r['departure_time'];
@@ -345,44 +340,38 @@ if (isset($_POST['load_request_list'])) {
 
 if (isset($_POST['save_request'])) {
 
-    $id           = $_POST['requestid'];
-    $daterequest  = $_POST['daterequest'];
-    $veh          = $_POST['plateNumber'];
-    $driver       = $_POST['driver'];
-    $fullname     = $_POST['fullname'];
-    $dateFrom     = $_POST['dateFrom'];
-    $dateTo       = $_POST['dateTo'];
-    $purpose      = $_POST['purpose'];
-    $destination  = $_POST['destination'];   // ✅ NEW FIELD
-    $numPass      = $_POST['numPass'];
-    $listPass     = $_POST['listPass'];
-    $departure    = $_POST['departure'];
+    $id = $_POST['requestid'];
+    $daterequest = $_POST['daterequest'];
+    $veh = $_POST['plateNumber'];
+    $driver = $_POST['driver'];
+    $fullname = $_POST['fullname'];
+    $dateFrom = $_POST['dateFrom'];
+    $dateTo = $_POST['dateTo'];
+    $purpose = $_POST['purpose'];
+    $numPass = $_POST['numPass'];
+    $listPass = $_POST['listPass'];
+    $departure = $_POST['departure'];
     $meetingPlace = $_POST['meetingPlace'];
 
     if ($id == "") {
-
         // INSERT
         $sql = "INSERT INTO tbl_vehicle_request 
-        (daterequest, vehicleid, driverid, requisitioner, date_from, date_to, purpose, destination, num_pass, list_passenger, departure_time, meeting_place, status, created_at)
-        VALUES 
-        ('$daterequest','$veh','$driver','$fullname','$dateFrom','$dateTo','$purpose','$destination','$numPass','$listPass','$departure','$meetingPlace','Pending',NOW())";
-
+        (daterequest, vehicleid, driverid, requisitioner, date_from, date_to, purpose, num_pass, list_passenger, departure_time, meeting_place, status, created_at)
+        VALUES ('$daterequest','$veh','$driver','$fullname','$dateFrom','$dateTo','$purpose','$numPass','$listPass','$departure','$meetingPlace','Pending',NOW())";
     } else {
-
         // UPDATE
         $sql = "UPDATE tbl_vehicle_request SET
-            daterequest='$daterequest',
-            vehicleid='$veh',
-            driverid='$driver',
-            requisitioner='$fullname',
-            date_from='$dateFrom',
-            date_to='$dateTo',
-            purpose='$purpose',
-            destination='$destination',
-            num_pass='$numPass',
-            list_passenger='$listPass',
-            departure_time='$departure',
-            meeting_place='$meetingPlace'
+        daterequest='$daterequest',
+        vehicleid='$veh',
+        driverid='$driver',
+        requisitioner='$fullname',
+        date_from='$dateFrom',
+        date_to='$dateTo',
+        purpose='$purpose',
+        num_pass='$numPass',
+        list_passenger='$listPass',
+        departure_time='$departure',
+        meeting_place='$meetingPlace'
         WHERE requestid='$id'";
     }
 
