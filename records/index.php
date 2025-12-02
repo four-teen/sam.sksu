@@ -1733,12 +1733,12 @@ function generateFileCode() {
 
 // Save Record
 document.getElementById("btn_save_record").addEventListener("click", function() {
-  const date_received = $("input[name='date_received']").val();
-  const file_code = $("#file_code").val();
-  const divisionid = $("#divisionid").val();
-  const uni_divisionid = $("#uni_divisionid").val();
-  const doctypeid = $("#doctypeid").val();
-  const particular = $("textarea[name='particular']").val();
+  const date_received   = $("input[name='date_received']").val();
+  const file_code       = $("#file_code").val();
+  const divisionid      = $("#divisionid").val();
+  const uni_divisionid  = $("#uni_divisionid").val();
+  const doctypeid       = $("#doctypeid").val();
+  const particular      = $("textarea[name='particular']").val();
 
   if (!date_received || !divisionid || !doctypeid || !particular || !uni_divisionid) {
     Swal.fire("Missing Data", "Please fill out all required fields.", "warning");
@@ -1758,8 +1758,37 @@ document.getElementById("btn_save_record").addEventListener("click", function() 
       particular: particular
     },
     success: function(response) {
-      if (response.trim() === "success") {
-        generateFileCode();
+      response = response.trim();
+      console.log("Server response:", response); // optional debug
+
+      // 🔥 DUPLICATE FILE CODE
+if (response === "duplicate") {
+    Swal.fire({
+        icon: "warning",
+        title: "Duplicate File Code",
+        text: "A new file code has been generated and is now ready to use.",
+        confirmButtonText: "OK"
+    }).then(() => {
+        // call our NEW generator, not refresh_filecode()
+        $.ajax({
+            url: "query_records.php",
+            type: "POST",
+            data: { generate_new_filecode: 1 },
+            success: function(newInput) {
+                $("#file_codes").html(newInput); // replace the input box
+            }
+        });
+    });
+
+    return;
+}
+
+
+      // ✅ SUCCESS
+      if (response === "success") {
+        // Generate next code for the next record
+        refresh_filecode();
+
         Swal.fire({
           icon: "success",
           title: "Saved!",
@@ -1767,25 +1796,32 @@ document.getElementById("btn_save_record").addEventListener("click", function() 
           timer: 1500,
           showConfirmButton: false
         });
+
         recordModal.hide();
         $("#form_add_record")[0].reset();
+
         loadTable();
         get_count_outgoing();
         get_count_returned();
-        get_count_acted();  
+        get_count_acted();
         get_count_delivered();
         get_count_new_received();
         get_doc_count();
 
-      } else {
-        Swal.fire("Error", "Something went wrong while saving.", "error");
+        return;
       }
+
+      // ❌ Any other response
+      Swal.fire("Error", "Something went wrong while saving.", "error");
     },
     error: function() {
       Swal.fire("Error", "Failed to communicate with server.", "error");
     }
   });
 });
+
+
+
 
 // 🚀 Optimized: Server-side DataTables for large datasets
 function loadTable() {

@@ -4566,3 +4566,261 @@
 2025-11-27 12:58:17 | DocID=666 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
 2025-11-27 12:58:17 | DocID=656 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
 2025-11-27 12:58:17 | DocID=655 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:39:01
+2025-12-02 09:39:01 | server_table request received
+2025-12-02 09:39:01 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:39:35
+2025-12-02 09:39:35 | server_table request received
+2025-12-02 09:39:35 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:39:35 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:39:50
+2025-12-02 09:39:50 | server_table request received
+2025-12-02 09:39:50 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:39:50 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:45:46
+2025-12-02 09:45:46 | server_table request received
+2025-12-02 09:45:46 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:45:46 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:48:30
+2025-12-02 09:48:30 | server_table request received
+2025-12-02 09:48:30 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:48:30 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:51:22
+2025-12-02 09:51:22 | server_table request received
+2025-12-02 09:51:22 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:51:22 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:51:36
+2025-12-02 09:51:36 | server_table request received
+2025-12-02 09:51:36 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:51:36 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:51:36 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:52:01
+2025-12-02 09:52:01 | server_table request received
+2025-12-02 09:52:01 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:52:01 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:52:01 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:52:12
+2025-12-02 09:52:12 | server_table request received
+2025-12-02 09:52:12 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:52:12 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:52:12 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:52:12 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:53:19
+2025-12-02 09:53:19 | server_table request received
+2025-12-02 09:53:19 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:53:19 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:53:19 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:53:19 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:53:39
+2025-12-02 09:53:39 | server_table request received
+2025-12-02 09:53:39 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:53:39 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:53:39 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:53:39 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:53:39 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:55:27
+2025-12-02 09:55:27 | server_table request received
+2025-12-02 09:55:27 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:55:27 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:55:27 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:55:27 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:55:27 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:55:34
+2025-12-02 09:55:34 | server_table request received
+2025-12-02 09:55:34 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:55:34 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:55:34 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:55:34 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:55:34 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:56:00
+2025-12-02 09:56:00 | server_table request received
+2025-12-02 09:56:00 | DocID=785 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:56:00 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:56:00 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:56:00 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:56:00 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:56:00 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:58:20
+2025-12-02 09:58:20 | server_table request received
+2025-12-02 09:58:20 | DocID=785 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:20 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:20 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:20 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:20 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:20 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:58:34
+2025-12-02 09:58:34 | server_table request received
+2025-12-02 09:58:34 | DocID=785 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:34 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:34 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:34 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:34 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:34 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 09:58:47
+2025-12-02 09:58:47 | server_table request received
+2025-12-02 09:58:47 | DocID=786 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:47 | DocID=785 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:47 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:47 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:47 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:47 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 09:58:47 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 10:03:57
+2025-12-02 10:03:57 | server_table request received
+2025-12-02 10:03:57 | DocID=786 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:03:57 | DocID=785 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:03:57 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:03:57 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:03:57 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:03:57 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:03:57 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 10:04:15
+2025-12-02 10:04:15 | server_table request received
+2025-12-02 10:04:15 | DocID=787 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:04:15 | DocID=786 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:04:15 | DocID=785 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:04:15 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:04:15 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:04:15 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:04:15 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:04:15 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 10:08:52
+2025-12-02 10:08:52 | server_table request received
+2025-12-02 10:08:52 | DocID=787 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:08:52 | DocID=786 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:08:52 | DocID=785 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:08:52 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:08:52 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:08:52 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:08:52 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:08:52 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 10:11:33
+2025-12-02 10:11:33 | server_table request received
+2025-12-02 10:11:33 | DocID=787 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:11:33 | DocID=786 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:11:33 | DocID=785 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:11:33 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:11:33 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:11:33 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:11:33 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:11:33 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 10:13:42
+2025-12-02 10:13:42 | server_table request received
+2025-12-02 10:13:42 | DocID=787 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:13:42 | DocID=786 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:13:42 | DocID=785 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:13:42 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:13:42 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:13:42 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:13:42 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:13:42 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 10:14:11
+2025-12-02 10:14:11 | server_table request received
+2025-12-02 10:14:11 | DocID=787 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:14:11 | DocID=786 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:14:11 | DocID=785 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:14:11 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:14:11 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:14:11 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:14:11 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:14:11 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 10:14:23
+2025-12-02 10:14:23 | server_table request received
+2025-12-02 10:14:23 | DocID=792 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:14:23 | DocID=787 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:14:23 | DocID=786 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:14:23 | DocID=785 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:14:23 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:14:23 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:14:23 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:14:23 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:14:23 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 10:16:18
+2025-12-02 10:16:18 | server_table request received
+2025-12-02 10:16:18 | DocID=792 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:18 | DocID=787 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:18 | DocID=786 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:18 | DocID=785 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:18 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:18 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:18 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:18 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:18 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 10:16:30
+2025-12-02 10:16:30 | server_table request received
+2025-12-02 10:16:30 | DocID=793 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:30 | DocID=792 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:30 | DocID=787 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:30 | DocID=786 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:30 | DocID=785 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:30 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:30 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:30 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:30 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:30 | DocID=755 | recordOwner=2 | currentOffice=67 | isOwner=FALSE
+
+
+>>> Script started at 2025-12-02 10:16:41
+2025-12-02 10:16:41 | server_table request received
+2025-12-02 10:16:41 | DocID=794 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:41 | DocID=793 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:41 | DocID=792 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:41 | DocID=787 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:41 | DocID=786 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:41 | DocID=785 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:41 | DocID=784 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:41 | DocID=783 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:41 | DocID=782 | recordOwner=67 | currentOffice=67 | isOwner=TRUE
+2025-12-02 10:16:41 | DocID=781 | recordOwner=67 | currentOffice=67 | isOwner=TRUE

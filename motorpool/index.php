@@ -78,6 +78,18 @@ html, body {
 .footer {
     flex-shrink: 0;
 }
+
+#TravelOrderModal .modal-dialog {
+    max-width: 900px; /* optional: keep wide form */
+}
+
+#TravelOrderModal .modal-body {
+    min-height: 500px;       /* 👈 FIXED MINIMUM HEIGHT */
+    max-height: 70vh;        /* still scrollable */
+    overflow-y: auto;        /* enable scrolling */
+}
+
+
 </style>
 
 
@@ -474,8 +486,167 @@ html, body {
 <script>
 
 // =========================
+// detect scroll for modal TOs
+// =========================
+// Detect scroll inside TO modal
+$("#TravelOrderModal").on("scroll", function() {
+
+    let modal = $(this);
+
+    // bottom reached?
+    if (modal.scrollTop() + modal.innerHeight() >= modal[0].scrollHeight - 50) {
+        load_travel_orders(); // load next batch
+    }
+
+});
+$("#TravelOrderModal .modal-body").on("scroll", function() {
+
+    let body = $(this);
+
+    if (body.scrollTop() + body.innerHeight() >= body[0].scrollHeight - 50) {
+        load_travel_orders();
+    }
+
+});
+
+// =========================
 // filtered and count
 // =========================
+
+//load image
+function viewTOimage(doc_id) {
+
+    $.post("query_vehicle_request.php",
+        { load_to_image: 1, doc_id: doc_id },
+        function(res) {
+
+            let images = [];
+
+            try {
+                images = JSON.parse(res);
+            } catch (e) {
+                images = [];
+            }
+
+            if (images.length === 0) {
+                Swal.fire("No Attachment", "This Travel Order has no uploaded images.", "info");
+                return;
+            }
+
+            // Build HTML with zoom container
+            let html = `
+                <style>
+                    #zoom-container {
+                        width: 100%;
+                        height: 500px;
+                        overflow: hidden;
+                        border-radius: 8px;
+                        background: #000;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        position: relative;
+                        cursor: grab;
+                    }
+                    #zoom-image {
+                        transition: transform 0.1s ease-out;
+                        max-width: 100%;
+                        max-height: 100%;
+                        user-select: none;
+                        -webkit-user-drag: none;
+                        pointer-events: none;
+                    }
+                    #zoom-controls {
+                        margin-top: 10px;
+                        text-align: center;
+                    }
+                    #zoom-controls button {
+                        margin: 0 5px;
+                    }
+                </style>
+
+                <div id="zoom-container">
+                    <img id="zoom-image" src="../uploads/${images[0]}">
+                </div>
+
+                <div id="zoom-controls">
+                    <button class="btn btn-sm btn-secondary" onclick="zoomIn()">Zoom In +</button>
+                    <button class="btn btn-sm btn-secondary" onclick="zoomOut()">Zoom Out –</button>
+                    <button class="btn btn-sm btn-primary" onclick="zoomReset()">Reset</button>
+                </div>
+            `;
+
+            Swal.fire({
+                title: "Travel Order Attachment",
+                html: html,
+                width: 650,
+                showCloseButton: true,
+                didOpen: () => initZoom()
+            });
+
+        }
+    );
+}
+
+let scale = 1;
+let originX = 0;
+let originY = 0;
+let isDragging = false;
+let startX, startY;
+
+function initZoom() {
+    const container = document.getElementById("zoom-container");
+    const image = document.getElementById("zoom-image");
+
+    container.addEventListener("mousedown", e => {
+        isDragging = true;
+        container.style.cursor = "grabbing";
+        startX = e.clientX - originX;
+        startY = e.clientY - originY;
+    });
+
+    container.addEventListener("mouseup", () => {
+        isDragging = false;
+        container.style.cursor = "grab";
+    });
+
+    container.addEventListener("mouseleave", () => {
+        isDragging = false;
+        container.style.cursor = "grab";
+    });
+
+    container.addEventListener("mousemove", e => {
+        if (!isDragging) return;
+        originX = e.clientX - startX;
+        originY = e.clientY - startY;
+        image.style.transform = `translate(${originX}px, ${originY}px) scale(${scale})`;
+    });
+}
+
+function zoomIn() {
+    scale += 0.2;
+    applyZoom();
+}
+
+function zoomOut() {
+    scale = Math.max(0.2, scale - 0.2);
+    applyZoom();
+}
+
+function zoomReset() {
+    scale = 1;
+    originX = 0;
+    originY = 0;
+    applyZoom();
+}
+
+function applyZoom() {
+    const image = document.getElementById("zoom-image");
+    image.style.transform = `translate(${originX}px, ${originY}px) scale(${scale})`;
+}
+
+
+
 
 function load_counts() {
     $.post("query_vehicle_request.php", { get_counts: 1 }, function(res) {
@@ -557,23 +728,107 @@ function selectTO(docid, filecode, particular) {
 }
 
 
+// function openTOmodal() {
+//     load_travel_orders(); 
+//     $("#TravelOrderModal").modal("show");
+// }  
 function openTOmodal() {
-    load_travel_orders(); 
+    to_search_key = "";
+    $("#to_search").val("");
+    load_travel_orders(true);
     $("#TravelOrderModal").modal("show");
-}  
+}
 
-function load_travel_orders(search = "") {
-    $.post("query_vehicle_request.php", 
-        { load_travel_orders: 1, search: search }, 
+// function load_travel_orders(search = "") {
+//     $.post("query_vehicle_request.php", 
+//         { load_travel_orders: 1, search: search }, 
+//         function(res) {
+//             $("#to_list").html(res);
+//         }
+//     );
+// }
+
+let to_offset = 0;
+let to_loading = false;
+let to_search_key = "";
+
+function load_travel_orders(reset = false) {
+
+    if (reset) {
+        to_offset = 0;
+        $("#to_list").html("");  
+    }
+
+    if (to_loading) return; 
+    to_loading = true;
+
+    $.post("query_vehicle_request.php",
+        {
+            load_travel_orders: 1,
+            search: to_search_key,
+            offset: to_offset
+        },
         function(res) {
-            $("#to_list").html(res);
+
+            let data = [];
+            try { data = JSON.parse(res); } catch(e){ data = []; }
+
+            if (data.length === 0) {
+                to_loading = false;
+                return;
+            }
+
+            data.forEach(r => {
+
+                let filecode = r.file_code.toUpperCase();
+                let part = r.particular;
+                let date = new Date(r.created_at).toLocaleDateString("en-US", {
+                    month: "short", day: "2-digit", year: "numeric"
+                });
+
+                $("#to_list").append(`
+                    <div class='col-12'>
+                        <div class='card shadow-sm border-0 request-card p-2'>
+                            <div class='card-body'>
+                                <div class='d-flex justify-content-between'>
+                                    <div>
+                                        <h6 class='mb-1 fw-bold text-primary'>TO #: ${filecode}</h6>
+                                        <div class='text-muted small'>Purpose: ${part}</div>
+                                        <div class='text-muted small'>Date: ${date}</div>
+                                    </div>
+                                    <div class='d-flex flex-column gap-1'>
+                                        <button class='btn btn-sm btn-success'
+                                            onclick='selectTO(${r.doc_id},"${filecode}", \`${part}\`)'>
+                                            <i class="bi bi-check-circle"></i>
+                                        </button>
+
+                                        <button class='btn btn-sm btn-info'
+                                            onclick='viewTOimage(${r.doc_id})'>
+                                            <i class="bi bi-image"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            });
+
+            // next batch
+            to_offset += 20;
+            to_loading = false;
         }
     );
 }
 
+
 // live search
-$(document).on("keyup", "#to_search", function() {
-    load_travel_orders($(this).val());
+// $(document).on("keyup", "#to_search", function() {
+//     load_travel_orders($(this).val());
+// });
+$("#to_search").on("keyup", function() {
+    to_search_key = $(this).val();
+    load_travel_orders(true);  // reset list and load from 0
 });
 
 $('#RequestModal').on('shown.bs.modal', function () {
@@ -742,6 +997,8 @@ function load_request_list() {
 }
 
 function save_request() {
+
+  // Collect data
   let data = {
     save_request: 1,
     requestid: $("#req_requestID").val(),
@@ -758,7 +1015,36 @@ function save_request() {
     meetingPlace: $("#req_meetingPlace").val(),
   };
 
+  // ============================
+  // VALIDATION SECTION
+  // ============================
+
+  // Check empty required fields
+  if (!data.daterequest) return Swal.fire("Missing Input","Please select Date of Request.","warning");
+  if (!data.plateNumber) return Swal.fire("Missing Input","Please select a Vehicle.","warning");
+  if (!data.driver) return Swal.fire("Missing Input","Please select a Driver.","warning");
+  if (!data.fullname) return Swal.fire("Missing Input","Please select the Requisitioner.","warning");
+  if (!data.dateFrom) return Swal.fire("Missing Input","Please select Travel Date (From).","warning");
+  if (!data.dateTo) return Swal.fire("Missing Input","Please select Travel Date (To).","warning");
+  if (!data.numPass) return Swal.fire("Missing Input","Please enter number of passengers.","warning");
+  if (!data.listPass) return Swal.fire("Missing Input","Please select a Travel Order.","warning");
+
+  // Validate travel date range
+  if (new Date(data.dateFrom) > new Date(data.dateTo)) {
+    return Swal.fire("Invalid Date Range", "Travel Date (From) cannot be later than Travel Date (To).", "error");
+  }
+
+  // Validate departure time if required
+  if (!data.departure) {
+    return Swal.fire("Missing Input", "Please enter Departure Time.", "warning");
+  }
+
+  // ============================
+  // PROCEED WITH SAVING
+  // ============================
+
   $.post("query_vehicle_request.php", data, function (response) {
+
     if (response.trim() === "success") {
 
       $("#RequestModal").modal("hide");
@@ -777,8 +1063,11 @@ function save_request() {
     } else {
       Swal.fire("Error", response, "error");
     }
+    
   });
+
 }
+
 
   function add_new_travel(){
     $('#RequestModal').modal('show');

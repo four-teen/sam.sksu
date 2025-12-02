@@ -5,6 +5,52 @@ include '../db.php';     // Then include database or other files
 
 $office_id = $_SESSION['officeid'];
 
+
+/* 🔹 GENERATE NEXT UNIQUE FILE CODE */
+/* 🔹 GENERATE NEXT UNIQUE FILE CODE */
+if (isset($_POST['generate_new_filecode'])) {
+
+    // 1. Get current prefix + last number
+    $get = mysqli_query($conn, "SELECT * FROM tbl_file_series LIMIT 1");
+    $row = mysqli_fetch_assoc($get);
+
+    $prefix = $row['series_prefix'];
+    $number = (int) $row['series_number'];
+
+    // 2. Find the next UNIQUE file code
+    $isUnique = false;
+
+    while (!$isUnique) {
+        $number++;
+
+        // ⭐ ALWAYS pad the number when generating the filecode
+        $padded = str_pad($number, 5, '0', STR_PAD_LEFT);
+
+        $new_code = $prefix . '-' . $padded;
+
+        // check duplicate from registry table
+        $chk = mysqli_query($conn, "SELECT COUNT(*) AS c FROM tbl_documents_registry WHERE file_code = '$new_code'");
+        $res = mysqli_fetch_assoc($chk);
+
+        if ($res['c'] == 0) {
+            $isUnique = true;
+        }
+    }
+
+    // 3. Update tbl_file_series (store raw number only, no leading zeros)
+    mysqli_query($conn, "UPDATE tbl_file_series SET series_number = '$number', updated_at = NOW()");
+
+    // 4. Return updated file_code HTML input
+    echo '
+      <label class="form-label fw-semibold">File Code</label>
+      <input type="text" value="'.$new_code.'" class="form-control shadow-sm bg-light" name="file_code" id="file_code" readonly>
+    ';
+
+    exit;
+}
+
+
+
 /* ================= SAVE OTHER INFO (normalized) ================= */
 if(isset($_POST['saving_employees'])){
     $acc_name = strtoupper(addslashes($_POST['acc_name']));
@@ -148,14 +194,20 @@ if (isset($_POST['delete_other_info'])) {
 if(isset($_POST['refresh_file_series'])){
     $select = "SELECT * FROM `tbl_file_series` LIMIT 1";
     $runselect = mysqli_query($conn, $select);
-    $rowselect = mysqli_fetch_assoc($runselect);    
-    $series = $rowselect['series_prefix'].'-'.$rowselect['series_number'];
-    echo
-    '
+    $rowselect = mysqli_fetch_assoc($runselect);
+
+    // ⭐ Pad the series number (5 digits)
+    $padded = str_pad($rowselect['series_number'], 5, '0', STR_PAD_LEFT);
+
+    // ⭐ Combine prefix + padded number
+    $series = $rowselect['series_prefix'] . '-' . $padded;
+
+    echo '
       <label class="form-label fw-semibold">File Code</label>
       <input type="text" value="'.$series.'" class="form-control shadow-sm bg-light" name="file_code" id="file_code" readonly>
     ';
 }
+
 
 
 if(isset($_POST['saving_document_series'])){
@@ -573,38 +625,67 @@ if (isset($_POST['load_dropdowns'])) {
     exit;
 }
 
-/* ðŸ”¹ ADD RECORD */
+
+/* 🔹 ADD RECORD */
 if (isset($_POST['add_record'])) {
+
     $date_received = mysqli_real_escape_string($conn, $_POST['date_received']);
     $received_by   = $_SESSION['officeid'];
     $file_code     = mysqli_real_escape_string($conn, $_POST['file_code']);
     $divisionid    = mysqli_real_escape_string($conn, $_POST['divisionid']);
-    $uni_divisionid    = mysqli_real_escape_string($conn, $_POST['uni_divisionid']);
+    $uni_divisionid = mysqli_real_escape_string($conn, $_POST['uni_divisionid']);
     $doctypeid     = mysqli_real_escape_string($conn, $_POST['doctypeid']);
     $particular    = mysqli_real_escape_string($conn, strtoupper($_POST['particular']));
     $date_received_op = isset($_POST['date_received_op']) ? mysqli_real_escape_string($conn, $_POST['date_received_op']) : NULL;
     $action_taken  = isset($_POST['action_taken']) ? mysqli_real_escape_string($conn, $_POST['action_taken']) : NULL;
 
+    /* 🔥 LAYER 2 — CHECK FOR DUPLICATE FILE CODE */
+    $check = mysqli_query($conn, "
+        SELECT COUNT(*) AS total 
+        FROM tbl_documents_registry 
+        WHERE file_code = '$file_code'
+    ");
+    $row = mysqli_fetch_assoc($check);
+
+    if ($row['total'] > 0) {
+        echo "duplicate";  // 🔥 STOP inserts if duplicate
+        exit;
+    }
+
+    /* 🔹 INSERT MAIN RECORD */
     $insert = mysqli_query($conn, "
         INSERT INTO tbl_documents_registry 
         (date_received, received_by, file_code, office_division, uni_divisionid, type_of_documents, particular)
-        VALUES ('$date_received', '$received_by', '$file_code', '$divisionid', '$office_id', '$doctypeid', '$particular')
+        VALUES ('$date_received', '$received_by', '$file_code', '$divisionid', '$uni_divisionid', '$doctypeid', '$particular')
     ");
 
     if($insert){
         // 🔥 Get last inserted doc_id
         $doc_id = mysqli_insert_id($conn);
 
-        // 🔥 Insert into actions table using the doc_id
+        // 🔥 Insert into actions table
         $insert_actions = mysqli_query($conn, "
             INSERT INTO tbl_document_actions 
             (doc_id, from_office_id, to_office_id, action_type, action_remarks, action_date)
             VALUES ('$doc_id', '$received_by', '$received_by', 'Logged', '', NOW())
         ");
+
+    // 3) SAFE file series increment
+    mysqli_query($conn, "
+        UPDATE tbl_file_series 
+        SET series_number = series_number + 1,
+            updated_at = NOW()
+        WHERE series_id = 1
+    ");
+      
     }
+
     echo $insert ? "success" : "error";
     exit;
 }
+
+
+
 
 /* ðŸ”¹ DELETE RECORD */
 if (isset($_POST['delete_record'])) {

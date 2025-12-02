@@ -4,6 +4,26 @@ session_start();         // Start session before anything else
 include '../db.php';     // Then include database or other files
 
 
+if (isset($_POST['load_to_image'])) {
+
+    $doc_id = intval($_POST['doc_id']);
+
+    // Fetch ALL images linked to this document
+    $q = mysqli_query($conn, 
+        "SELECT img_filename 
+         FROM tbl_document_images 
+         WHERE doc_id = '$doc_id'"
+    );
+
+    $images = [];
+    while ($row = mysqli_fetch_assoc($q)) {
+        $images[] = $row['img_filename'];
+    }
+
+    echo json_encode($images); 
+    exit;
+}
+
 if (isset($_POST['get_counts'])) {
 
     $counts = [];
@@ -37,8 +57,72 @@ if (isset($_POST['delete_request'])) {
     exit;
 }
 
+// if (isset($_POST['load_travel_orders'])) {
+//     $search = mysqli_real_escape_string($conn, $_POST['search']);
+
+//     $sql = "
+//         SELECT doc_id, file_code, particular, created_at
+//         FROM tbl_documents_registry
+//         WHERE type_of_documents = 7
+//         AND (file_code LIKE '%$search%' OR particular LIKE '%$search%')
+//         ORDER BY created_at DESC
+//     ";
+
+//     $run = mysqli_query($conn, $sql);
+
+//     echo "<div class='row g-2'>";
+
+//     while ($r = mysqli_fetch_assoc($run)) {
+
+//         $docid    = $r['doc_id'];
+//         $filecode = strtoupper($r['file_code']);
+//         $part     = ucwords($r['particular']);
+//         $date     = date("M d, Y", strtotime($r['created_at']));
+
+//         echo "
+//         <div class='col-12'>
+//             <div class='card shadow-sm border-0 request-card p-2'>
+//                 <div class='card-body'>
+
+//                     <div class='d-flex justify-content-between'>
+                        
+//                         <div>
+//                             <h6 class='mb-1 fw-bold text-primary'>TO #: $filecode</h6>
+//                             <div class='text-muted small'>Purpose: $part</div>
+//                             <div class='text-muted small'>Date: $date</div>
+//                         </div>
+
+//                         <div class='d-flex flex-column gap-1'>
+
+//                             <!-- SELECT TO BUTTON -->
+//                             <button class='btn btn-sm btn-success'
+//                                 onclick='selectTO($docid, \"$filecode\", `".addslashes($part)."`);'>
+//                                 <i class=\"bi bi-check-circle\"></i>
+//                             </button>
+
+//                             <!-- VIEW ATTACHMENT BUTTON -->
+//                             <button class='btn btn-sm btn-info' onclick='viewTOimage($docid)'>
+//                                 <i class=\"bi bi-image\"></i>
+//                             </button>
+
+//                         </div>
+
+//                     </div>
+
+//                 </div>
+//             </div>
+//         </div>
+//         ";
+//     }
+
+//     echo "</div>";
+//     exit;
+// }
 if (isset($_POST['load_travel_orders'])) {
+
     $search = mysqli_real_escape_string($conn, $_POST['search']);
+    $offset = intval($_POST['offset']);     // NEW
+    $limit  = 20;                           // load 20 items per batch
 
     $sql = "
         SELECT doc_id, file_code, particular, created_at
@@ -46,32 +130,21 @@ if (isset($_POST['load_travel_orders'])) {
         WHERE type_of_documents = 7
         AND (file_code LIKE '%$search%' OR particular LIKE '%$search%')
         ORDER BY created_at DESC
+        LIMIT $limit OFFSET $offset
     ";
 
     $run = mysqli_query($conn, $sql);
 
-    echo "<div class='row g-2'>";
+    $results = [];
+
     while ($r = mysqli_fetch_assoc($run)) {
-
-        $filecode = strtoupper($r['file_code']);
-        $part     = ucwords($r['particular']);
-        $date     = date("M d, Y", strtotime($r['created_at']));
-
-        echo "
-        <div class='col-12'>
-            <div class='card shadow-sm border-0 request-card p-2' onclick='selectTO(".$r['doc_id'].",\"".addslashes($filecode)."\",\"".addslashes($part)."\")' style='cursor:pointer;'>
-                <div class='card-body'>
-                    <h6 class='mb-1 fw-bold text-primary'>TO #: $filecode</h6>
-                    <div class='text-muted small'>Purpose: $part</div>
-                    <div class='text-muted small'>Date: $date</div>
-                </div>
-            </div>
-        </div>
-        ";
+        $results[] = $r;
     }
-    echo "</div>";
+
+    echo json_encode($results);
     exit;
 }
+
 
 if (isset($_POST['get_request'])) {
 
