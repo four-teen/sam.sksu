@@ -1176,12 +1176,12 @@ function generateFileCode() {
 
 // Save Record
 document.getElementById("btn_save_record").addEventListener("click", function() {
-  const date_received = $("input[name='date_received']").val();
-  const file_code = $("#file_code").val();
-  const divisionid = $("#divisionid").val();
-  const uni_divisionid = $("#uni_divisionid").val();  
-  const doctypeid = $("#doctypeid").val();
-  const particular = $("textarea[name='particular']").val();
+  const date_received   = $("input[name='date_received']").val();
+  const file_code       = $("#file_code").val();
+  const divisionid      = $("#divisionid").val();
+  const uni_divisionid  = $("#uni_divisionid").val();
+  const doctypeid       = $("#doctypeid").val();
+  const particular      = $("textarea[name='particular']").val();
 
   if (!date_received || !divisionid || !doctypeid || !particular || !uni_divisionid) {
     Swal.fire("Missing Data", "Please fill out all required fields.", "warning");
@@ -1201,8 +1201,44 @@ document.getElementById("btn_save_record").addEventListener("click", function() 
       particular: particular
     },
     success: function(response) {
-      if (response.trim() === "success") {
-        generateFileCode();
+
+      response = response.trim();
+
+      // ⚠ Duplicate file code detected
+      if (response === "duplicate") {
+        Swal.fire({
+          icon: "warning",
+          title: "Duplicate File Code",
+          text: "A new file code has been generated.",
+          confirmButtonText: "OK"
+        }).then(() => {
+
+          $.ajax({
+            url: "query_records.php",
+            type: "POST",
+            data: { generate_new_filecode: 1 },
+            success: function(newInput) {
+              $("#file_codes").html(newInput);
+            }
+          });
+
+        });
+        return;
+      }
+
+      // 🟢 Successfully saved
+      if (response === "success") {
+
+        // Get next file code ready
+        $.ajax({
+          url: "query_records.php",
+          type: "POST",
+          data: { refresh_file_series: 1 },
+          success: function(newInput) {
+            $("#file_codes").html(newInput);
+          }
+        });
+
         Swal.fire({
           icon: "success",
           title: "Saved!",
@@ -1210,22 +1246,29 @@ document.getElementById("btn_save_record").addEventListener("click", function() 
           timer: 1500,
           showConfirmButton: false
         });
+
         recordModal.hide();
         $("#form_add_record")[0].reset();
+
         loadTable();
         get_count_outgoing();
         get_count_new_received();
         get_doc_count();
 
-      } else {
-        Swal.fire("Error", "Something went wrong while saving.", "error");
+        return;
       }
+
+      // ❌ Other errors
+      Swal.fire("Error", "Something went wrong while saving.", "error");
     },
+
     error: function() {
       Swal.fire("Error", "Failed to communicate with server.", "error");
     }
   });
 });
+
+
 
 // ================================
 $(document).ready(function () {
